@@ -17,13 +17,11 @@
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome -->
-  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
-    rel="stylesheet" />
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <!-- javascript -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+<!-- javascript -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 
 </head>
 
@@ -50,9 +48,9 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <div class="input-group mb-4 border rounded-pill p-1">
-            <input id="search-bar" type="search" placeholder="Search" aria-describedby="button-addon3"
-              class="form-control bg-none border-0">
-            <div class="input-group-append border-0">
+            <input id="search-bar" type="text" placeholder="Search" aria-describedby="button-addon3"
+              class="form-control bg-none border-0" id="search-bar">
+            <div id="search-button" class="input-group-append border-0">
               <button id="button-addon3" type="button" class="btn btn-link text-success"><i
                   class="fa fa-search"></i></button>
             </div>
@@ -70,58 +68,62 @@
         <div class="row">
           <!-- Stock ticker -->
           <div class="col-md-6">
-            <div class="ticker card-body">
-              <div id="heading">
-                <h2 id="stock-name">Google</h1>
-                  <i class="far fa-heart"></i>
+            <div data-aos="zoom-in" data-aos-duration="2000">
+              <div class="ticker card-body">
+                <div id="heading">
+                  <h2 id="stock-name">Loading...</h1>
+                    <i class="far fa-heart"></i>
+                </div>
               </div>
               <div class="stock-ticker">
-                <h4 id="open-close">$300</h4>
+                <h4 id="open-close">Loading...</h4>
                 <p id="stock-status">Open</p>
               </div>
               <div class="stock-ticker">
-                <h4 id="todays-high">$350</h4>
+                <h4 id="todays-high">Loading...</h4>
                 <p>Today's high</p>
               </div>
               <div class="stock-ticker">
-                <h4 id="todays-low">$250</h4>
+                <h4 id="todays-low">Loading...</h4>
                 <p>Today's low</p>
               </div>
               <div class="stock-detail">
-                <h1 id="buy-sell" class="display-4">Buy</h1>
+                <h1 id="buy-sell" class="display-4">Loading...</h1>
               </div>
 
             </div>
           </div>
           <!-- Stock chart -->
+
+
           <div class="col-md-6">
-            <div data-aos="flip-down" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
-              <canvas id="stock-graph" style="max-height: 100%; max-width: 100%;"></canvas>
-            </div>
+            <canvas id="stock-graph" style="max-height: 100%; max-width: 100%;"></canvas>
           </div>
         </div>
       </div>
     </div>
   </div>
+  </div>
+  </div>
 
   <!-- News articles -->
   <div class="news-section">
     <div class="container">
+        <div data-aos="zoom-in" data-aos-duration="2000">
       <div class="card-deck" id="article-display">
         <div class="card">
           <img src="https://via.placeholder.com/385x214" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">
               <a href="#" class="card-link">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content.</a>
+              </a>
             </h5>
             <p class="card-text">
-              Investors News
+              Loading...
             </p>
 
             <p class="card-text">
-              <small class="text-muted">3 hours ago</small>
+              <small class="text-muted"></small>
             </p>
           </div>
         </div>
@@ -130,14 +132,13 @@
           <div class="card-body">
             <h5 class="card-title">
               <a href="#" class="card-link">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content.</a>
+              </a>
             </h5>
             <p class="card-text">
-              Investors News
+              Loading...
             </p>
             <p class="card-text">
-              <small class="text-muted">3 hours ago</small>
+              <small class="text-muted"></small>
             </p>
           </div>
         </div>
@@ -146,15 +147,15 @@
           <div class="card-body">
             <h5 class="card-title">
               <a href="#" class="card-link">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content.</a>
+              </a>
             </h5>
             <p class="card-text">
-              Investors News
+              Loading...
             </p>
             <p class="card-text">
-              <small class="text-muted">3 hours ago</small>
+              <small class="text-muted"></small>
             </p>
+          </div>
           </div>
         </div>
       </div>
