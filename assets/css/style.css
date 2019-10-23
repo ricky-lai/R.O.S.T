@@ -1,0 +1,51 @@
+/* ***** SEARCH RESULTS ***** */
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.bg-light {
+    background-color: white !important;
+}
+
+.navbar-brand {
+    font-size: 36px;
+}
+
+.navbar-brand small {
+    display: block;
+    font-size: 16px;
+}
+
+/* .mr-auto,
+.mx-auto {
+    margin-right: auto !important;
+    margin-left: 37rem;
+} */
+
+.container {
+    margin: 40px auto;
+}
+
+.ticker {
+    padding: 0px;
+}
+
+.stock-ticker {
+    display: inline-block;
+    margin: 16px 32px 16px 0px;
+}
+
+.news-section {
+    background-color: rgba(0, 0, 0, .125);
+    padding: 16px 0px;
+}
+
+
+
+.stock-detail {
+    margin-bottom: 24px;
+}
+
+.card {
+    border: 0px;
+}
