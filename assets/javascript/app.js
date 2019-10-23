@@ -15,6 +15,7 @@ function stockTickerRequest(search) {
     }).then(function (response) {
         console.log("stockticker request");
         console.log(response);
+        console.log("---------------------------------------------------------------");
 
         //grabbing the symbol from the first response of the search query
         var responseTicker = response.bestMatches[0]["1. symbol"]
@@ -35,9 +36,33 @@ function stockDataRequest(ticker) {
     }).then(function (response) {
         console.log("stockdata request");
         console.log(response);
+        console.log("---------------------------------------------------------------");
 
         //changing the objects of objects into an array of objects
-        var responseArray = Object.keys(response["Monthly Adjusted Time Series"]);
+        var responseArray = [];
+        for(item in response["Monthly Adjusted Time Series"]){
+            responseArray.push(response["Monthly Adjusted Time Series"][item]);
+         }
+
+        console.log("response array")
+        console.log(responseArray);
+        console.log("---------------------------------------------------------------");
+
+        //storing 4 values in an array to show quarterly growth
+        var dataArray = [];
+        for (var i = 13; i > 0; i -= 4) {
+            dataArray.push(responseArray[i]["5. adjusted close"]);
+        }
+
+        worthBuy(dataArray);
+        console.log("Above this is the data array");
+        console.log(dataArray);
+        console.log("---------------------------------------------------------------");
+
+        //passing through the data we retrieved to the displayChart function to show the chart on screen
+        displayChart(dataArray);
+
+
     });
 }
 
@@ -51,14 +76,18 @@ function newsRequest(tickerSearch) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
+        console.log("news api request");
         console.log(response);
+        console.log("---------------------------------------------------------------");
 
         var articlesArray = [];
         // creating a loop to pull the top 3 articles
         for (var i = 0; i < 3; i++) {
             articlesArray.push(response.articles[i]);
         }
+        console.log("articles array");
         console.log(articlesArray);
+        console.log("---------------------------------------------------------------");
         displayArticles(articlesArray);
     });
 }
@@ -86,16 +115,17 @@ function displayArticles(articles) {
     }
 }
 
-function displayChart(data) {
+function displayChart(stockData) {
     //empty the current div the chart is in
-    new Chart(document.getElementById("myChart"), {
+    new Chart(document.getElementById("stock-graph"), {
         type: 'line',
         data: {
-            labels: ["Q1", "Q2", "Q3", "Q4"],
+            labels: ["Q4", "Q3", "Q2", "Q1"],
             datasets: [{
-                data: [10, 20, 50, 40],
+                data: stockData,
                 //line color
                 borderColor: "#333333",
+                //fills the area beneath the line
                 fill: true
             }
             ]
@@ -112,14 +142,32 @@ function displayChart(data) {
     });
 }
 
+function worthBuy(yearlyData) {
+    var percent = 0;
+
+    percent = ((yearlyData[3]-yearlyData[0])/yearlyData[0])*100;
+    console.log("percent");
+    console.log(percent);
+    console.log("---------------------------------------------------------------");
+}
 
 
-//BUTTON HANDLERS
+
+//EVENT HANDLERS
 ////////////////////////////////////////////////////////////////////
 $("#search-button").on("click", function () {
     stockTickerRequest($("#search-bar").text().trim());
 });
 
+$("bigSearchButton").on("click", function() {
+    //make this get the value of the main page and load next page with stored value
+    // localStorage.setItem("defaultSearch", )
+});
+
+
+if(localStorage.getItem("defaultSearch") !== null)
+{
+    stockTickerRequest(localStorage.getItem("defaultSearch"));
+}
 //FOR TESTING PURPOSES
 stockTickerRequest();
-displayChart();
