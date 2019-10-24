@@ -3,7 +3,6 @@
 
 //call to alpha vantage to get the stock ticker
 function stockTickerRequest(search) {
-    //FOR TESTING PURPOSES
 
     var apiKey = "TFCCMLBLD91O6OFT";
     var queryURL = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + search + "&apikey=" + apiKey;
@@ -27,7 +26,7 @@ function stockTickerRequest(search) {
     });
 }
 
-//call to alpha vantage to get the historical data of the stocks
+//calls to alpha vantage to get the historical data of the stocks
 function stockDataRequest(ticker) {
     var apiKey = "TFCCMLBLD91O6OFT";
     var queryURL = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=" + ticker + "&apikey=" + apiKey;
@@ -69,7 +68,7 @@ function stockDataRequest(ticker) {
     });
 }
 
-// Calls to newsAPI for top articles related to the search
+//calls to newsAPI for top articles related to the search
 function newsRequest(tickerSearch) {
     var apiKey = "44ec6ee2a9c74c3dbe590b43546a857c";
     var queryURL = "https://newsapi.org/v2/everything?q=" + tickerSearch + "&apiKey=" + apiKey;
@@ -93,8 +92,6 @@ function newsRequest(tickerSearch) {
         displayArticles(articlesArray);
     });
 }
-
-
 
 //ALL FUNCTIONS
 ////////////////////////////////////////////////////////////////////
@@ -211,6 +208,7 @@ $("#bigSearchButton").on("click", function () {
 if (localStorage.getItem("defaultSearch") !== null) {
     stockTickerRequest(localStorage.getItem("defaultSearch"));
 }
+
 //FOR TESTING PURPOSES
 stockTickerRequest("intel");
 
