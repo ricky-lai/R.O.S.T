@@ -9,11 +9,15 @@ body {
 
 .navbar-brand {
     font-size: 36px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .navbar-brand small {
     display: block;
     font-size: 16px;
+
 }
 
 /* .mr-auto,
@@ -48,4 +52,13 @@ body {
 
 .card {
     border: 0px;
+
+}
+
+button {
+    color: black;
+}
+
+i {
+    color: #bae8e8;
 }
