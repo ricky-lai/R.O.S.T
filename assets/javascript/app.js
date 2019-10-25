@@ -15,6 +15,13 @@ function stockTickerRequest(search) {
         console.log(response);
         console.log("---------------------------------------------------------------");
 
+
+        //check if there is no response
+        if(response.bestMatches.length === 0) {
+            displayError();
+        }
+        else {
+
         //grabbing the symbol from the first response of the search query
         var responseTicker = response.bestMatches[0]["1. symbol"];
 
@@ -23,6 +30,7 @@ function stockTickerRequest(search) {
 
         stockDataRequest(responseTicker);
         newsRequest(responseTicker);
+        }
     });
 }
 
@@ -184,7 +192,13 @@ function worthBuy(yearlyData) {
         $("#buy-sell").text("Don't Buy");
     }
 }
-
+function displayError() {
+    $("#open-close").text("Error");
+    $("#todays-high").text("Error");
+    $("#todays-low").text("Error");
+    $("#buy-sell").text("Error");
+    $("#stock-name").text("Invalid Search")
+}
 
 //EVENT HANDLERS
 ////////////////////////////////////////////////////////////////////
@@ -198,17 +212,26 @@ $(document).ready(function () {
         }
 
     });
-});
-$("#bigSearchButton").on("click", function () {
-    //make this get the value of the main page and load next page with stored value
-    // localStorage.setItem("defaultSearch", )
-});
+
+    $("#big-search-button").on("click", function () {
+        //make this get the value of the main page and load next page with stored value
+        event.preventDefault();
+        var value = "?para1=" + $("#big-search-bar").val().trim();
+        document.location.assign("search-results.html" + value);
 
 
-if (localStorage.getItem("defaultSearch") !== null) {
-    stockTickerRequest(localStorage.getItem("defaultSearch"));
+        console.log($("#big-search-bar").val().trim());
+
+    });
+});
+// take the search from the mainpage is use it on the results page
+if ($("body").hasClass("resultspage")) {
+    // stockTickerRequest();
+    console.log(decodeURIComponent(window.location.search));
+    var param = decodeURIComponent(window.location.search);
+    stockTickerRequest(param.substring(7, param.length));
 }
 
-//FOR TESTING PURPOSES
-stockTickerRequest("intel");
+// //FOR TESTING PURPOSES
+// stockTickerRequest("intel");
 

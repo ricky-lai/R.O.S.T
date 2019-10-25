@@ -23,10 +23,12 @@
 <!-- javascript -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+
 
 </head>
 
-<body>
+<body class="resultspage">
   <script>
     AOS.init();
   </script>
@@ -34,7 +36,7 @@
   <!-- Navbar with search -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="#">ROST<small class="text-muted">Stocks simplified.</small></a>
+      <p class="navbar-brand" href="#">ROST<small class="text-muted">Stocks simplified.</small></p>
       <br>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,11 +44,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Top 5</a>
-          </li>
-        </ul>
+        <ul class="navbar-nav mr-auto"></ul>
         <form class="form-inline my-2 my-lg-0">
           <div class="input-group mb-4 border rounded-pill p-1">
             <input id="search-bar" type="text" placeholder="Search" aria-describedby="button-addon3"
@@ -73,7 +71,6 @@
               <div class="ticker card-body">
                 <div id="heading">
                   <h2 id="stock-name">Loading...</h1>
-                    <i class="far fa-heart"></i>
                 </div>
               </div>
               <div class="stock-ticker">
