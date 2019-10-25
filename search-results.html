@@ -20,10 +20,17 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- javascript -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+  <!-- javascript -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+  <!-- bootstrap js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
 
 </head>
@@ -34,9 +41,9 @@
   </script>
 
   <!-- Navbar with search -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav id="navbar-full" class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <p class="navbar-brand" href="#">ROST<small class="text-muted">Stocks simplified.</small></p>
+      <p class="navbar-brand">ROST<small class="text-muted">Stocks simplified.</small></p>
       <br>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +62,6 @@
             </div>
           </div>
         </form>
-
       </div>
     </div>
   </nav>
@@ -93,7 +99,6 @@
           </div>
           <!-- Stock chart -->
 
-
           <div class="col-md-6">
             <canvas id="stock-graph" style="max-height: 100%; max-width: 100%;"></canvas>
           </div>
@@ -101,64 +106,61 @@
       </div>
     </div>
   </div>
-  </div>
-  </div>
 
   <!-- News articles -->
   <div class="news-section">
     <div class="container">
-        <div data-aos="zoom-in" data-aos-duration="2000">
-      <div class="card-deck" id="article-display">
-        <div class="card">
-          <img src="https://via.placeholder.com/385x214" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">
-              <a href="#" class="card-link">
-              </a>
-            </h5>
-            <p class="card-text">
-              Loading...
-            </p>
+      <div data-aos="zoom-in" data-aos-duration="2000">
+        <div class="card-deck" id="article-display">
 
-            <p class="card-text">
-              <small class="text-muted"></small>
-
-            </p>
+          <div class="card">
+            <img src="https://via.placeholder.com/385x214" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="#" class="card-link">
+                </a>
+              </h5>
+              <p class="card-text">
+                Loading...
+              </p>
+              <p class="card-text">
+                <small class="text-muted"></small>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="card">
 
-          <img src="https://via.placeholder.com/385x214" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">
-              <a href="#" class="card-link">
-              </a>
-            </h5>
-            <p class="card-text">
-              Loading...
-            </p>
-            <p class="card-text">
-              <small class="text-muted"></small>
+          <div class="card">
+            <img src="https://via.placeholder.com/385x214" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="#" class="card-link">
+                </a>
+              </h5>
+              <p class="card-text">
+                Loading...
+              </p>
+              <p class="card-text">
+                <small class="text-muted"></small>
+              </p>
+            </div>
+          </div>
 
-            </p>
+          <div class="card">
+            <img src="https://via.placeholder.com/385x214" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="#" class="card-link">
+                </a>
+              </h5>
+              <p class="card-text">
+                Loading...
+              </p>
+              <p class="card-text">
+                <small class="text-muted"></small>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="card">
 
-          <img src="https://via.placeholder.com/385x214" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">
-              <a href="#" class="card-link">
-              </a>
-            </h5>
-            <p class="card-text">
-              Loading...
-            </p>
-            <p class="card-text">
-              <small class="text-muted"></small>
-            </p>
-          </div>
-          </div>
         </div>
       </div>
     </div>
@@ -169,8 +171,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="assets/javascript/app.js"></script>
-<!-- bootstrap js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
 </html>
