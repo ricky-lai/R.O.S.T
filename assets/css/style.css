@@ -12,6 +12,7 @@ body {
     padding-top: 0;
     padding-bottom: 0;
     font-family: 'Quicksand', sans-serif;
+   
 }
 
 
@@ -41,7 +42,8 @@ body {
 }
 
 .news-section {
-    background-color: rgba(0, 0, 0, .125);
+    /* background-color: rgba(0, 0, 0, .125); */
+    background-color: #2c698d;
     padding: 16px 0px;
 }
 
@@ -62,4 +64,9 @@ button {
 
 i {
     color: #bae8e8;
+}
+
+#buy-sell {
+    font-weight: bold;
+    font-size: 3rem;
 }

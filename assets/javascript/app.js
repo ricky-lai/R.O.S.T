@@ -16,7 +16,7 @@ function stockTickerRequest(search) {
         if (response.bestMatches.length === 0) {
             displayError();
         }
-        
+
         else {
             //grabbing the symbol from the first response of the search query
             var responseTicker = response.bestMatches[0]["1. symbol"];
@@ -143,9 +143,11 @@ function displayChart(stockData) {
             datasets: [{
                 data: stockData,
                 //line color
-                borderColor: "#333333",
+                borderColor: "#272643",
+                backgroundColor: "#2c698d",
                 //fills the area beneath the line
                 fill: true
+                
             }
             ]
         },
@@ -170,9 +172,11 @@ function worthBuy(yearlyData) {
     //check if the stock is worth buying or not
     if (percent >= 3) {
         $("#buy-sell").text("Buy");
+        $("#buy-sell").css("color", "lightgreen");
     }
     else {
         $("#buy-sell").text("Don't Buy");
+        $("#buy-sell").css("color", "tomato");
     }
 }
 
@@ -211,7 +215,16 @@ $(document).ready(function () {
         var value = "?para1=" + search;
         document.location.assign("search-results.html" + value);
     });
+
+    //make form not submit on enter press
+    $("form").on("keypress", function (e) {
+        if (e.which == 13) {
+            event.preventDefault();
+        }
+    });
 });
+
+
 
 // take the search from the mainpage is use it on the results page
 if ($("body").hasClass("resultspage")) {
