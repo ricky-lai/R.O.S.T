@@ -10,6 +10,7 @@
   transform: translate(-50%, -50%);
 }
 
+
 .content {
   position: fixed;
   bottom: 0;
@@ -36,7 +37,7 @@
     position: fixed;
     text-align: center;
     top: 20%;
-    color: rgb(153, 226, 226);
+    color: white;
 }
 #ss {
     color: white;

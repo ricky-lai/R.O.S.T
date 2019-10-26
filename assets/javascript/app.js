@@ -3,7 +3,6 @@
 
 //call to alpha vantage to get the stock ticker
 function stockTickerRequest(search) {
-    //FOR TESTING PURPOSES
 
     var apiKey = "TFCCMLBLD91O6OFT";
     var queryURL = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + search + "&apikey=" + apiKey;
@@ -12,23 +11,28 @@ function stockTickerRequest(search) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log("stockticker request");
-        console.log(response);
-        console.log("---------------------------------------------------------------");
 
-        //grabbing the symbol from the first response of the search query
-        var responseTicker = response.bestMatches[0]["1. symbol"];
+        //check if there is no response
+        if (response.bestMatches.length === 0) {
+            displayError();
+        }
+        
+        else {
+            //grabbing the symbol from the first response of the search query
+            var responseTicker = response.bestMatches[0]["1. symbol"];
 
-        //display company name on html
-        $("#stock-name").text(response.bestMatches[0]["1. symbol"] + " - " + response.bestMatches[0]["2. name"]);
+            //display company name on html
+            $("#stock-name").text(response.bestMatches[0]["1. symbol"] + " - " + response.bestMatches[0]["2. name"]);
 
-        stockDataRequest(responseTicker);
-        newsRequest(responseTicker);
+            stockDataRequest(responseTicker);
+            newsRequest(responseTicker);
+        }
     });
 }
 
-//call to alpha vantage to get the historical data of the stocks
+//calls to alpha vantage to get the historical data of the stocks
 function stockDataRequest(ticker) {
+
     var apiKey = "TFCCMLBLD91O6OFT";
     var queryURL = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=" + ticker + "&apikey=" + apiKey;
 
@@ -36,19 +40,11 @@ function stockDataRequest(ticker) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log("stockdata request");
-        console.log(response);
-        console.log("---------------------------------------------------------------");
-
         //changing the objects of objects into an array of objects
         var responseArray = [];
         for (item in response["Monthly Adjusted Time Series"]) {
             responseArray.push(response["Monthly Adjusted Time Series"][item]);
         }
-
-        console.log("response array")
-        console.log(responseArray);
-        console.log("---------------------------------------------------------------");
 
         //storing 4 values in an array to show quarterly growth
         var quarterlyData = [];
@@ -56,10 +52,8 @@ function stockDataRequest(ticker) {
             quarterlyData.push(responseArray[i]["5. adjusted close"]);
         }
 
+        //check if the stock is worth buying and display it
         worthBuy(quarterlyData);
-        console.log("Above this is the data array");
-        console.log(quarterlyData);
-        console.log("---------------------------------------------------------------");
 
         //passing through the data we retrieved to the displayChart function to show the chart on screen
         displayChart(quarterlyData);
@@ -69,8 +63,9 @@ function stockDataRequest(ticker) {
     });
 }
 
-// Calls to newsAPI for top articles related to the search
+//calls to newsAPI for top articles related to the search
 function newsRequest(tickerSearch) {
+
     var apiKey = "44ec6ee2a9c74c3dbe590b43546a857c";
     var queryURL = "https://newsapi.org/v2/everything?q=" + tickerSearch + "&apiKey=" + apiKey;
 
@@ -78,23 +73,17 @@ function newsRequest(tickerSearch) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log("news api request");
-        console.log(response);
-        console.log("---------------------------------------------------------------");
 
         var articlesArray = [];
         // creating a loop to pull the top 3 articles
         for (var i = 0; i < 3; i++) {
             articlesArray.push(response.articles[i]);
         }
-        console.log("articles array");
-        console.log(articlesArray);
-        console.log("---------------------------------------------------------------");
+
         displayArticles(articlesArray);
+
     });
 }
-
-
 
 //ALL FUNCTIONS
 ////////////////////////////////////////////////////////////////////
@@ -106,6 +95,7 @@ function displayArticles(articles) {
     var source = "";
     var newsUrl = "";
     var newsImage = "";
+
     //empty current article display
     $("#article-display").empty();
 
@@ -126,10 +116,10 @@ function displayArticles(articles) {
             "<p>" + publishedDate + "</p>" +
             "</div>" +
             "</div>");
-
     }
 }
 
+//get the stats from the api request and display them on the page
 function displayStats(current) {
     var open = "";
     var high = "";
@@ -144,8 +134,8 @@ function displayStats(current) {
     $("#todays-low").text("$" + low.substring(0, open.length - 2));
 }
 
+//display the chart on the page with the data from the api
 function displayChart(stockData) {
-    //empty the current div the chart is in
     new Chart(document.getElementById("stock-graph"), {
         type: 'line',
         data: {
@@ -171,13 +161,11 @@ function displayChart(stockData) {
     });
 }
 
+//check if the stock has over 3 percent yearly growth and display the result of that calc
 function worthBuy(yearlyData) {
     var percent = 0;
 
     percent = ((yearlyData[3] - yearlyData[0]) / yearlyData[0]) * 100;
-    console.log("percent");
-    console.log(percent);
-    console.log("---------------------------------------------------------------");
 
     //check if the stock is worth buying or not
     if (percent >= 3) {
@@ -188,29 +176,45 @@ function worthBuy(yearlyData) {
     }
 }
 
+//display error if search is invalid
+function displayError() {
+    $("#open-close").text("Error");
+    $("#todays-high").text("Error");
+    $("#todays-low").text("Error");
+    $("#buy-sell").text("Error");
+    $("#stock-name").text("Invalid Search")
+}
 
 //EVENT HANDLERS
 ////////////////////////////////////////////////////////////////////
+
+//waiting for the page to be fully loaded
 $(document).ready(function () {
+
+    //search button on the search results page
     $("#search-button").on("click", function () {
-        console.log("clickerd");
         event.preventDefault();
-        console.log($("#search-bar").val().trim());
         if ($("#search-bar").length > 0) {
             stockTickerRequest($("#search-bar").val().trim());
         }
+    });
 
+    //search button on index.html
+    $("#big-search-button").on("click", function () {
+        //make this get the value of the main page and load next page with stored value
+        event.preventDefault();
+        var search = $("#big-search-bar").val().trim();
+        if (search.length === 0) {
+            search = "Google"
+        }
+
+        var value = "?para1=" + search;
+        document.location.assign("search-results.html" + value);
     });
 });
-$("#bigSearchButton").on("click", function () {
-    //make this get the value of the main page and load next page with stored value
-    // localStorage.setItem("defaultSearch", )
-});
 
-
-if (localStorage.getItem("defaultSearch") !== null) {
-    stockTickerRequest(localStorage.getItem("defaultSearch"));
+// take the search from the mainpage is use it on the results page
+if ($("body").hasClass("resultspage")) {
+    var param = decodeURIComponent(window.location.search);
+    stockTickerRequest(param.substring(7, param.length));
 }
-//FOR TESTING PURPOSES
-stockTickerRequest("intel");
-
