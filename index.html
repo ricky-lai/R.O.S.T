@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>R.O.S.T</title>
+    <title>ROST</title>
 
     <!-- css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -13,47 +13,45 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/frontPageStyle.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-    <!-- javascript -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="assets/javascript/app.js0"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!-- javascript -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+
 
 </head>
 
 
-<body>
+<body class="frontpage">
 
     <script>
         AOS.init();
     </script>
-
+<div class="bg-image"></div>
 
     <!-- Search page -->
 
     <!-- background video -->
+
     <video autoplay muted  id="myVideo">
         <source src="assets/video.mp4" type="video/mp4">
+
     </video>
 
     <!-- header and subheader -->
     <div id="rost">
-        <h1 id="rs">ROST</h1>
-        <p id="ss">Stocks Simplified.</p>
+        <div data-aos="fade-down" data-aos-duration="1000">
+            <h1 id="rs">ROST</h1>
+            <p id="ss">Stocks Simplified.</p>
+        </div>
     </div>
 
 
     <!-- search button -->
     <form action="">
-        <input type="search" id=bigSearchButton>
-        <i class="fa fa-search"></i>
+        <input type="search" id="big-search-bar">
+        <i class="fa fa-search" id=big-search-button></i>
     </form>
 
 
