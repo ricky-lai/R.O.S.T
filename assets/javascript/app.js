@@ -215,6 +215,7 @@ $(document).ready(function () {
 
 // take the search from the mainpage is use it on the results page
 if ($("body").hasClass("resultspage")) {
-    var param = decodeURIComponent(window.location.search);
+    var param = "";
+    param = decodeURIComponent(window.location.search);
     stockTickerRequest(param.substring(7, param.length));
 }
