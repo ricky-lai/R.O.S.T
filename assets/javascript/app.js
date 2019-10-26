@@ -143,10 +143,8 @@ function displayChart(stockData) {
             datasets: [{
                 data: stockData,
                 //line color
-                borderColor: "#2c698d",
+                borderColor: "#272643",
                 backgroundColor: "#2c698d",
-                pointBackgroundColor: "#000000",
-                pointBorderColor: "#000000",
                 //fills the area beneath the line
                 fill: true
                 
@@ -159,7 +157,7 @@ function displayChart(stockData) {
             },
             title: {
                 display: true,
-                text: 'Stock Report Over Past Year'
+                text: 'Quarterly Stock Report'
             }
         }
     });
@@ -184,12 +182,11 @@ function worthBuy(yearlyData) {
 
 //display error if search is invalid
 function displayError() {
-    $("#open-close").text("None");
-    $("#todays-high").text("None");
-    $("#todays-low").text("None");
-    $("#buy-sell").text("None");
-    $("#buy-sell").css("color", "black");
-    $("#stock-name").text("No Results");
+    $("#open-close").text("Error");
+    $("#todays-high").text("Error");
+    $("#todays-low").text("Error");
+    $("#buy-sell").text("Error");
+    $("#stock-name").text("Invalid Search")
 }
 
 //EVENT HANDLERS
