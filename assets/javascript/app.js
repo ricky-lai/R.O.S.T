@@ -143,8 +143,9 @@ function displayChart(stockData) {
             datasets: [{
                 data: stockData,
                 //line color
-                borderColor: "#272643",
+                borderColor: "#2c698d",
                 backgroundColor: "#2c698d",
+                pointBackgroundColor: "#ffffff",
                 //fills the area beneath the line
                 fill: true
                 
@@ -157,7 +158,7 @@ function displayChart(stockData) {
             },
             title: {
                 display: true,
-                text: 'Quarterly Stock Report'
+                text: 'Stock Report Over Past Year'
             }
         }
     });
@@ -167,6 +168,7 @@ function displayChart(stockData) {
 function worthBuy(yearlyData) {
     var percent = 0;
 
+    //convert the data in to a percent
     percent = ((yearlyData[3] - yearlyData[0]) / yearlyData[0]) * 100;
 
     //check if the stock is worth buying or not
@@ -208,10 +210,6 @@ $(document).ready(function () {
         //make this get the value of the main page and load next page with stored value
         event.preventDefault();
         var search = $("#big-search-bar").val().trim();
-        if (search.length === 0) {
-            search = "Google"
-        }
-
         var value = "?para1=" + search;
         document.location.assign("search-results.html" + value);
     });
@@ -224,11 +222,13 @@ $(document).ready(function () {
     });
 });
 
-
-
 // take the search from the mainpage is use it on the results page
 if ($("body").hasClass("resultspage")) {
     var param = "";
     param = decodeURIComponent(window.location.search);
-    stockTickerRequest(param.substring(7, param.length));
+    param = param.substring(7, param.length);
+    if(param.length === 0) {
+        param = "google";
+    }
+    stockTickerRequest(param);
 }
